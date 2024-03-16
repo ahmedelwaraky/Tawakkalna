@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
+
+:root{
+  --main-font: "Almarai", sans-serif;
+  --bs-body-bg:  #F8F9FA;
+}
+
+body {
+  font-family: var(--main-font);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.almarai-light {
+  font-family: var(--main-font);
+  font-weight: 300;
+  font-style: normal;
+}
+
+.almarai-regular {
+  font-family: var(--main-font);
+  font-weight: 400;
+  font-style: normal;
+}
+
+.almarai-bold {
+  font-family: var(--main-font);
+  font-weight: 700;
+  font-style: normal;
+}
+
+.almarai-extrabold {
+  font-family: var(--main-font);
+  font-weight: 800;
+  font-style: normal;
+}
+
+
+/* main button style  */
+.main-btn{
+  background-color:#c2a43b !important;
+}

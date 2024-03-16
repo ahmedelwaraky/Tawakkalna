@@ -1,0 +1,10 @@
+body{
+    font-family: "Almarai", sans-serif;
+}
+.orders-button{
+    display: flex;
+    justify-content: "between";
+}
+.orders-button a{
+    color: #c2a43b;
+}

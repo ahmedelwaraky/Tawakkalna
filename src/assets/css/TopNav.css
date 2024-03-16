@@ -1,0 +1,25 @@
+body{
+    font-family: "Almarai", sans-serif;
+}
+#TopNav .bg-image {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    border-radius: 0 0 25px 25px;
+    background-color: #c2a43b;
+    border-bottom: 8px solid #ffffff ;
+
+}
+.OpactiyImg{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.holiday{
+    padding:75px 20px 0 20px
+}
+.holiday .left{
+    position: relative;
+}

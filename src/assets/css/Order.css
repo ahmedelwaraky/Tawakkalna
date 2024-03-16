@@ -1,0 +1,17 @@
+body{
+    font-family: "Almarai", sans-serif;
+}
+.main-section{
+    position: relative;
+}
+.order-status img{
+    position: relative;
+}
+.order-status p{
+    position: absolute;
+    top: 0;
+    padding: 5px 5px 0 0;
+    color: aliceblue;
+    font-size: 12px;
+    text-align: center;
+}
