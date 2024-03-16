@@ -31,7 +31,7 @@ export default function Main() {
     <>
     <section className='main-page bg-light'>
         {/* هنا نضع مسار الصفحة الاساسيه للتطبيق */}
-        <TopNav herf='/'/>   
+        <TopNav herf={'/'}  content={"الرئسية"}/>   
         <div className="container">
             <div className="main-serves text-center m-5">
                 <i className="logo fa-solid fa-plane-departure"></i>

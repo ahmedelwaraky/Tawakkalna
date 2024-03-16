@@ -2,7 +2,7 @@ import React from 'react'
 import '../assets/css/TopNav.css'
 import OpactiyImg from '../assets/images/opacity.png'
 
-export default function TopNav({herf} ) {
+export default function TopNav({herf ,content} ) {
 
     
   return (
@@ -15,7 +15,7 @@ export default function TopNav({herf} ) {
                 <div className="holiday d-flex justify-content-between">
 
                     <div className="left">
-                        <a href={herf} className='text-white almarai-regular  link-underline link-underline-opacity-0'><i class="fa-solid fa-chevron-right text-white "></i> الأجـــازة</a>
+                        <a href={herf} className='text-white almarai-regular  link-underline link-underline-opacity-0'><i class="fa-solid fa-chevron-right text-white "></i>{content}</a>
                     </div>
 
 

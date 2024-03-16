@@ -11,7 +11,9 @@ export default function Details() {
     const [userdata, setUserData] = useState(null);
     let navigate =useNavigate()
     const [tokenIsExpired, setIsExpired] = useState(false);
+    // let username = decodedToken.ID;
     const username = '1015108754';
+
     //url
     const apiUrl = `http://94.130.9.202:5050/vacation/get?username=${username}`;
     //get token
@@ -64,74 +66,65 @@ export default function Details() {
     }
 
     return (<>
-        {/* <TopNav/> */}
-        <section >
-        {tokenIsExpired && (
-                <div div className="alert alert-danger">
-                    Token has expired. Please login again.
+        <TopNav herf={'/'}  content={"الرئسية"}/>
+        <section className='userDetails' >
+            <div className="container ">
+                <div className="accecpting text-center text-white  mt-4">
+                    <h6 className=''>مقبــول</h6>
                 </div>
-            )}
-            {
-                <div className="container ">
-                <div className="accecpting text-center text-white fw-bold">
-                    <h6 className='fw-bold'>مقبــول</h6>
-                </div>
-                
                 <div className="detail shadow-sm border border-1  pt-3 px-3">
                 <div  className="div d-flex justify-content-between border-bottom py-2">
-                            <h6 className='fw-bold'>الاسم</h6>
-                            <h5 className='h6 fw-bold'>{decodedToken.unique_name.split(' ')[0]} {decodedToken.unique_name.split(' ')[decodedToken.unique_name.split(' ').length - 2]}</h5>
+                            <h6 className=''>الاسم</h6>
+                            <h5 className='h6 '>{decodedToken.unique_name.split(' ')[0]} {decodedToken.unique_name.split(' ')[decodedToken.unique_name.split(' ').length - 2]}</h5>
                         </div> 
                     
                     <div className="div d-flex justify-content-between border-bottom py-2">
-                        <h6 className='fw-bold'>القطاع</h6>
-                        <h5 className='h6 fw-bold'>{decodedToken.SubAgencyName}</h5>
+                        <h6 className=''>القطاع</h6>
+                        <h5 className='h6 '>{decodedToken.SubAgencyName}</h5>
                     </div>
                     
                     <div className="div d-flex justify-content-between border-bottom py-2">
-                        <h6 className='fw-bold'>الرتبة</h6>
-                        <h5 className='h6 fw-bold'>{decodedToken.RankName}</h5>
+                        <h6 className=''>الرتبة</h6>
+                        <h5 className='h6 '>{decodedToken.RankName}</h5>
                     </div>
                     
                     <div className="div d-flex justify-content-between border-bottom py-2">
-                        <h6 className='fw-bold'>رقم الطلب</h6>
-                        <h5 className='h6 fw-bold'>{decodedToken.EmployeeTypeId}</h5>
+                        <h6 className=''>رقم الطلب</h6>
+                        <h5 className='h6 '>{decodedToken.EmployeeTypeId}</h5>
                     </div>
                     
                     <div className="div d-flex justify-content-between border-bottom py-2">
-                        <h6 className='fw-bold'>تاريخ الطلب </h6>
-                        <h5 className='h6 fw-bold'>{userdata[0].requestDate.split("T")[0]}</h5>
+                        <h6 className=''>تاريخ الطلب </h6>
+                        <h5 className='h6 '>{userdata[0].requestDate.split("T")[0]}</h5>
                     </div>
             
                     <div className="div d-flex justify-content-between border-bottom py-2">
-                        <h6 className='fw-bold'>تاريخ البداية  </h6>
-                        <h5 className='h6 fw-bold'>{userdata[0].startDate.split("T")[0]}</h5>
+                        <h6 className=''>تاريخ البداية  </h6>
+                        <h5 className='h6 '>{userdata[0].startDate.split("T")[0]}</h5>
                     </div>
                     
                     <div className="div d-flex justify-content-between border-bottom py-2">
-                        <h6 className='fw-bold'>تاريخ النهاية  </h6>
-                        <h5 className='h6 fw-bold'>{userdata[0].endDate.split("T")[0]}</h5>
+                        <h6 className=''>تاريخ النهاية  </h6>
+                        <h5 className='h6 '>{userdata[0].endDate.split("T")[0]}</h5>
                     </div>
                     
                     <div className="div d-flex justify-content-between border-bottom py-2">
-                        <h6 className='fw-bold'>عدد الأيام</h6>
-                        <h5 className='h6 fw-bold'>{userdata[0].noofdays}</h5>
+                        <h6 className=''>عدد الأيام</h6>
+                        <h5 className='h6 '>{userdata[0].noofdays}</h5>
                     </div>
                     
                     <div className="div d-flex justify-content-between border-bottom py-2">
-                        <h6 className='fw-bold'>نوع الأجازة</h6>
-                        <h5 className='h6 fw-bold'>{userdata[0].vacationType}</h5>
+                        <h6 className=''>نوع الأجازة</h6>
+                        <h5 className='h6 '>{userdata[0].vacationType}</h5>
                     </div>
                     
                     <div className="div d-flex justify-content-between border-bottom py-2">
-                        <h6 className='fw-bold'>ملاحظات</h6>
-                        <h5 className='h6 fw-bold'></h5>
+                        <h6 className=''>ملاحظات</h6>
+                        <h5 className='h6 '></h5>
                     </div>
                     
                 </div>
-            </div>
-            }
-            
+            </div>   
         </section>
       </>
     )

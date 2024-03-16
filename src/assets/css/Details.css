@@ -1,5 +1,5 @@
 .accecpting{
-    background-color: rgb(64, 189, 33);
+    background-color: #4C9C7E !important;
     width: 100%;
     height: 100%;
     border: 1px solid rgb(240, 234, 234);
@@ -8,4 +8,8 @@
 }
 .detail{
     border-radius: 5px 5px 25px 25px;
+}
+
+.userDetails .detail h5 , h6{ 
+    font-size:12px !important;
 }

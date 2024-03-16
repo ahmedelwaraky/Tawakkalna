@@ -8,3 +8,6 @@ body{
 .orders-button a{
     color: #c2a43b;
 }
+form label {
+    font-size: 14px !important;
+}

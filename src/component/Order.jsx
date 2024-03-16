@@ -72,22 +72,6 @@ return (<>
                 </div>
 
             </div>
-            {/* <div className="main-section d-flex justify-content-between  bg-white border border-1  rounded-4 mt-4" onClick={handleClick}>
-                <div className="numer-order d-flex p-3">
-                    <div className="img pe-3 pt-2">
-                        <img src={FRAMA} alt="" />
-                    </div>
-                    <div className="text ">
-                        <h2 className='h6 almarai-regular fw-bold'>طلب رقم 3 </h2>
-                        <p className='almarai-regular'><small>{orderData?.[0].requestDate.split('T')[0]}</small></p>
-                    </div>
-                </div>
-
-                <div className="order-status pe-5 p-relative">
-                    <img src={STATUS2} alt="status" />
-                    <p className='almarai-regular'><small>مفتوح</small></p>
-                </div>
-            </div> */}
         </div>
     </section>
 </>)
