@@ -1,8 +1,19 @@
-body{
-    font-family: "Almarai", sans-serif;
-}
+
 .main-section{
     position: relative;
+}
+.main-section .main-order{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    text-decoration: none;
+    color: #000000ac;
+}
+.text h2{
+    font-size: 14px !important;
+}
+.text p{
+    font-size: 12px !important;
 }
 .order-status img{
     position: relative;
@@ -14,10 +25,4 @@ body{
     color: aliceblue;
     font-size: 12px;
     text-align: center;
-}
-.text h2{
-    font-size: 14px !important;
-}
-.text p{
-    font-size: 12px !important;
 }

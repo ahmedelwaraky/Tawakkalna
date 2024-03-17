@@ -3,45 +3,33 @@ import FRAMA from '../assets/images/Frame.png';
 import STATUS1 from '../assets/images/status1.png';
 import '../assets/css/Order.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useJwt } from 'react-jwt';
 
+
 export default function Order() {
+    const navigate = useNavigate();
     const [orderData, setData] = useState(null);
-    const storedToken = localStorage.getItem("token");
-    const {decodedToken, isExpired}  = useJwt(storedToken);
+    const storedToken =localStorage.getItem("token");
+    console.log(storedToken);
+    const {decodedToken ,isExpired}  = useJwt(storedToken);
     console.log(decodedToken);
 
-    // let username = decodedToken.ID;
-    let username = '1015108754';
+
+
+    let username = decodedToken?.ID;
     const apiUrl = `http://94.130.9.202:5050/vacation/get?username=${username}`;
 
-    const navigate = useNavigate();
-    const handleClick = () => {
-        navigate('/details');
-    }  
+    // const handleClick = () => {
+    //     navigate('/details');
+    // }  
 
     useEffect(() => {
-        // if (!storedToken) {
-        //     console.warn('Token not found');
-        //     return;
-        // }
-
-        // if (!decodedToken || !decodedToken.decodedToken || !decodedToken.decodedToken.ID) {
-        //     console.warn('Decoded token or username not found');
-        //     return;
-        // }
-
-        const config = {
-            headers: {
-              Authorization: `Bearer ${storedToken}`
-            }
-          };
         const fetchData = async () => {
             try {
-                const response = await axios.get(apiUrl,config);
+                const response = await axios.get(apiUrl);
                 let responseData =response.data.data
-               
+                console.log("STRING " , responseData);
                 setData(responseData);
     
             } catch (error) {
@@ -49,29 +37,32 @@ export default function Order() {
             }
         };
         fetchData();
-    }, []);
-
+    }, [decodedToken]);
+console.log(orderData);
     
 return (<>
     <section id="order" className=''>
         <div className="container mx-auto my-3 ">
-            <div className="main-section d-flex justify-content-between  bg-white border border-1  rounded-4" onClick={handleClick}>
-                <div className="numer-order d-flex p-3">
-                    <div className="img pe-3 pt-2">
-                        <img src={FRAMA} alt="" />
+            {orderData && orderData.map((item)=>
+                 <div key={item?.id} className="main-section bg-white border border-1 rounded-4 col-12 my-2" >
+                    <Link className="main-order" to={`/details/${item?.id}`}>
+                    <div className="number-order d-flex p-3">
+                        <div className="img pe-3 pt-2">
+                                <img src={FRAMA} alt="" />
+                        </div>
+                        <div className="text">
+                            <h2 className='h6 almarai-regular fw-bold'>طلب رقم {decodedToken.EmployeeTypeId}</h2>
+                            <p className='almarai-regular'>{item?.requestDate.slice('T' , 10)}<small></small></p>
+                        </div>
                     </div>
-                    <div className="text ">
-                        <h2 className='h6 almarai-regular fw-bold'>طلب رقم 1 </h2>
-                        <p className='almarai-regular'>{orderData?.[0].requestDate.split('T')[0]}<small></small></p>
+
+                    <div className="order-status pe-5">
+                        <img src={STATUS1} alt="status" />
+                        <p className='almarai-regular'><small>{item?.status}</small></p>
                     </div>
+                    </Link>
                 </div>
-
-                <div className="order-status pe-5 p-relative">
-                    <img src={STATUS1} alt="status" />
-                    <p className='almarai-regular'><small>{orderData?.[0].status}</small></p>
-                </div>
-
-            </div>
+            )}
         </div>
     </section>
 </>)

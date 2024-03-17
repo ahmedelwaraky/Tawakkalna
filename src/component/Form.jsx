@@ -21,12 +21,6 @@ export default function Form() {
     const storedToken = localStorage.getItem("token");
     //decode token
     const { decodedToken, isExpired } = useJwt(storedToken);
-    
-    const config = {
-        headers: {
-          Authorization: `Bearer ${storedToken}`
-        }
-      };
 
 
     //image
@@ -43,7 +37,6 @@ export default function Form() {
  
     //validation
     let validationSchema = Yup.object().shape({
-        // name: Yup.string().required('الاسم مطلوب'),
         startDate: Yup.string().required('تاريخ بداية الأجازة مطلوب'),
         endDate: Yup.string().required('تاريخ نهاية الأجازة مطلوب'),
         numberOfDays: Yup.number().positive('عدد الأيام المطلوب يجب ان يكون أكثر من 0').required('عدد الأيام مطلوب').typeError('يجب أن يكون عددًا'),
@@ -63,14 +56,6 @@ export default function Form() {
         }, validationSchema:validationSchema,
         onSubmit :submitForm
     })
-
-    //token at url
-    // useEffect(() => {
-    //     const url = window.location.href;
-    //     const params = new URLSearchParams(url);
-    //     const token = params.get('token');
-    //     console.log('Token:', token);
-    // }, []);
     
     // call api
     async function submitForm(values){
@@ -83,8 +68,8 @@ export default function Form() {
             "SubagencyName":decodedToken.SubAgencyName  
         }
         try {
-            let response = await axios.post(`http://94.130.9.202:5050/vacation/saveRequest` , body ,config );
-            // console.log(response);
+            let response = await axios.post(`http://94.130.9.202:5050/vacation/saveRequest` , body  );
+            console.log(response);
             if (response.status === 200){
                 setLoading(false);
             }

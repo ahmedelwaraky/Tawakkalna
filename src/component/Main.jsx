@@ -1,29 +1,36 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TopNav from './TopNav'
 import '../assets/css/Main.css'
 import Button from './Button'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useJwt } from 'react-jwt'
 
 export default function Main() {
-    //Token
-    const token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxMDE1MTA4NzU0IiwidW5pcXVlX25hbWUiOiLYrtin2YTYryAzMzQ0NyDYudio2K_Yp9mE2YTZhyAzMzQ0NyDZhdit2YXYryAzMzQ0NyDYp9mE2YXYrdmF2K_ZiiAzMzQ0NyIsImZhbWlseV9uYW1lIjoi2KfZhNmF2K3Zhdiv2YogMzM0NDciLCJJRCI6IjEwMTUxMDg3NTQiLCJSYW5rTmFtZSI6ItmF2YLYr9mFIiwiU3ViQWdlbmN5SWQiOiI4NDcyZGEwNC1jNDc0LTQxNTItYTE2ZS1kM2M0MDRmYTIxMjIiLCJTdWJBZ2VuY3lOYW1lIjoiMdiv2YrZiNin2YYg2YjYstin2LHYqSDYp9mE2K_Yp9iu2YTZitipIiwiVXNlclR5cGUiOiJFbXBsb3llZSIsIklQQWRkcmVzcyI6IjQ2LjE1Mi40MS42NiIsIlVzZXJUeXBlSWQiOiIwIiwiRW1wbG95ZWVUeXBlIjoiTWFydGlhbCIsIkVtcGxveWVlVHlwZUlkIjoiMSIsIm5iZiI6MTcxMDI3MTE5MiwiZXhwIjoxNzEyODYzMTkyLCJpYXQiOjE3MTAyNzExOTJ9.RmRRhUl8K3F-8TlF_iXJ9KZuoLxVfs0pVv1Npb5_aByPKG3jVSfQATF11S33kSniwzLIppuHnXhZ5tAGwcH3tPg3pO_rD5JxFL2oqrJl7HZVB74vAoap348j5IAfxNPTc9bGAQ8LxrLh3EEZsABvFBf5FSlIRctQJZkRJmJYwUmorYbP9_mYWbBa1dVYWTerchBiUsiCwgrY2y0q9TEbsJw0RbkNc9zJbkAe3t9yIcbwgzFbTNL-9AOa56L_YSAUzu9jq8JeRueWtep7TAzsXUmcPoQJBAF1Q6c_WH9hPaQ76T9yG34iwL4Em7qZwRqVEWN9JOTrRU7xEM1hl59m1w";
-    //Set Token
-    localStorage.setItem("token", token);
-    //get token 
-    const storedToken = localStorage.getItem("token")
-    //decoded token 
-    const {decodedToken , isExpired} = useJwt(storedToken)
-
     let navigate =useNavigate();
-
+    let location = useLocation();
+    let [token ,setToken] = useState(null)
+     //Token
+    //  const token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxMDE1MTA4NzU0IiwidW5pcXVlX25hbWUiOiLYrtin2YTYryAzMzQ0NyDYudio2K_Yp9mE2YTZhyAzMzQ0NyDZhdit2YXYryAzMzQ0NyDYp9mE2YXYrdmF2K_ZiiAzMzQ0NyIsImZhbWlseV9uYW1lIjoi2KfZhNmF2K3Zhdiv2YogMzM0NDciLCJJRCI6IjEwMTUxMDg3NTQiLCJSYW5rTmFtZSI6ItmF2YLYr9mFIiwiU3ViQWdlbmN5SWQiOiI4NDcyZGEwNC1jNDc0LTQxNTItYTE2ZS1kM2M0MDRmYTIxMjIiLCJTdWJBZ2VuY3lOYW1lIjoiMdiv2YrZiNin2YYg2YjYstin2LHYqSDYp9mE2K_Yp9iu2YTZitipIiwiVXNlclR5cGUiOiJFbXBsb3llZSIsIklQQWRkcmVzcyI6IjQ2LjE1Mi40MS42NiIsIlVzZXJUeXBlSWQiOiIwIiwiRW1wbG95ZWVUeXBlIjoiTWFydGlhbCIsIkVtcGxveWVlVHlwZUlkIjoiMSIsIm5iZiI6MTcxMDI3MTE5MiwiZXhwIjoxNzEyODYzMTkyLCJpYXQiOjE3MTAyNzExOTJ9.RmRRhUl8K3F-8TlF_iXJ9KZuoLxVfs0pVv1Npb5_aByPKG3jVSfQATF11S33kSniwzLIppuHnXhZ5tAGwcH3tPg3pO_rD5JxFL2oqrJl7HZVB74vAoap348j5IAfxNPTc9bGAQ8LxrLh3EEZsABvFBf5FSlIRctQJZkRJmJYwUmorYbP9_mYWbBa1dVYWTerchBiUsiCwgrY2y0q9TEbsJw0RbkNc9zJbkAe3t9yIcbwgzFbTNL-9AOa56L_YSAUzu9jq8JeRueWtep7TAzsXUmcPoQJBAF1Q6c_WH9hPaQ76T9yG34iwL4Em7qZwRqVEWN9JOTrRU7xEM1hl59m1w";
+     //Set Token to local storage
+    //  localStorage.setItem("token", token);
+    //  //get token from local storage
+    //   const storedToken = localStorage.getItem("token")
+    //  //decoded token 
+    //  const {decodedToken , isExpired} = useJwt(storedToken)
+   
 
     let checkToken = ()=>{
-        if (isExpired) {
-            navigate("/error");
+        const params = new URLSearchParams(location.search)
+        const token = params.get('access_token')
+        console.log(token);
+        setToken(token)
 
-        } else {
+        if (token) {
+            localStorage.setItem('token', token);
             navigate("/status");
+        } else {
+            console.log('Token not found in the URL');
+            navigate("/error")
         }
     }
 

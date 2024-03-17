@@ -26,7 +26,7 @@ export default function App() {
         <Route path="/menu"  element={<TapMenu/>}/> 
         <Route path="/button"  element={<Button/>}/> 
         <Route path="/loadingbutton"  element={<LoadingButton/>}/> 
-        <Route path="/details"  element={<Details/>}/> 
+        <Route path="/details/:id"  element={<Details/>}/> 
         <Route path="/error"  element={<Error/>}/> 
       </Routes>
     </BrowserRouter>
