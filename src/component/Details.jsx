@@ -4,26 +4,47 @@ import '../assets/css/Details.css'
 import axios from 'axios';
 import { useJwt } from 'react-jwt';
 import { RotatingLines } from 'react-loader-spinner'
-import { useNavigate, useParams } from 'react-router-dom';
+import {useNavigate, useParams } from 'react-router-dom';
+import Cookies from 'js-cookie'
+
 
 
 export default function Details() {
     let [userdata, setUserData] = useState(null);
-    let navigate =useNavigate()
+    let navigate =useNavigate() 
 
-    // const [tokenIsExpired, setIsExpired] = useState(false);
+
+    let [Token ,setToken] = useState(null)
     //get token
-    const storedToken = localStorage.getItem("token");
+    // const storedToken = localStorage.getItem("token");
+    useEffect(() => {
+        // Function to retrieve and decode token from cookie
+        const getTokenFromCookieAndDecode = () => {
+          // Retrieve token from cookie
+          const tokenFromCookie = Cookies.get('myToken');
+          console.log(tokenFromCookie);
+          setToken(tokenFromCookie)
+        };
+        // Call the function to retrieve and decode token when the component mounts
+        getTokenFromCookieAndDecode();
+      }, [])
+
+
+
+
+
     //decode token
-    const { decodedToken, isExpired } = useJwt(storedToken);
+    const { decodedToken, isExpired } = useJwt(Token);
     
     //get id
     let parmas = useParams();
     let orderId=(parmas.id);
     console.log(orderId);
+
     //url
     let username = decodedToken?.ID;;
     const apiUrl = `http://94.130.9.202:5050/vacation/get?username=${username}`;
+
     // fetch data
     useEffect(() => {
         const fetchData = async () => {
@@ -35,13 +56,13 @@ export default function Details() {
                 )
                 console.log(oneUser);
                 setUserData(oneUser)
-                console.log(userdata);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         };
         fetchData();
     }, [decodedToken]);
+
     console.log(userdata);
 
 
@@ -70,7 +91,6 @@ export default function Details() {
     }
 
     return (<>
-        <TopNav herf={'/'}  content={"الرئسية"}/>
         <section className='userDetails' >
             <div className="container ">
                 <div className="accecpting text-center text-white  mt-4">

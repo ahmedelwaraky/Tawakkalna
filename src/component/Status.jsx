@@ -3,9 +3,7 @@ import TopNav from './TopNav'
 import TapMenu from './TapMenu'
 
 export default function Status() {
-  return (
-    <>
-    <TopNav herf={'/'} content={"السابقة"}/>
+  return (<>
     <section>
       <div className="conatiner">
           <TapMenu/>

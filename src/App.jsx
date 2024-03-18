@@ -22,7 +22,7 @@ export default function App() {
         <Route path="/status"  element={<Status/>}/> 
         <Route path="/form"  element={<Form/>}/> 
         <Route path="/order"  element={<Order/>}/> 
-        <Route path="/top"  element={<TopNav/>}/> 
+        {/* <Route path="/top"  element={<TopNav/>}/>  */}
         <Route path="/menu"  element={<TapMenu/>}/> 
         <Route path="/button"  element={<Button/>}/> 
         <Route path="/loadingbutton"  element={<LoadingButton/>}/> 

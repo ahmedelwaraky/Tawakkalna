@@ -8,6 +8,8 @@ import '../assets/css/Form.css'
 import '../assets/css/Order.css'
 import * as Yup from 'yup'
 import axios from 'axios'
+import Cookies from 'js-cookie'
+
 
 
 export default function Form() {
@@ -15,12 +17,21 @@ export default function Form() {
     let [error , setError]= useState(null)
     let navigate =useNavigate()
     const [image, setImage] = useState(null);
-    // const [tokenIsExpired, setIsExpired] = useState(false);
 
+    let [Token ,setToken] = useState(null)
     //get token
-    const storedToken = localStorage.getItem("token");
+     useEffect(() => {
+        const getTokenFromCookie = () => {
+          const tokenFromCookie = Cookies.get('myToken');
+          console.log(tokenFromCookie);
+          setToken(tokenFromCookie)
+        };
+        getTokenFromCookie();
+      }, []);
+
     //decode token
-    const { decodedToken, isExpired } = useJwt(storedToken);
+    const { decodedToken, isExpired } = useJwt(Token);
+    console.log(decodedToken);
 
 
     //image
@@ -97,7 +108,6 @@ export default function Form() {
     
   return <>
   <section id='form' className=''>
-
                 <div className="container mx-auto">
                 <form className='pt-3 bg-white shadow-sm rounded-4 mt-3 p-3'  onSubmit={formik.handleSubmit}>
                     <div className="d-flex align-items-center">
@@ -112,14 +122,6 @@ export default function Form() {
                             )}
                         </div>
                     </div>
-    
-                    {/* <div className="mb-3">
-                        <label htmlFor="name" className="form-label almarai-light fw-bold">الاسم</label>
-                        <input type="text"  className="form-control rounded-3 fw-b" id="name" name='name' value={formik.values.name}  onChange={formik.handleChange} onBlur={formik.handleBlur}/>
-                        {formik.errors.name && formik.touched.name ? (
-                            <div className='alert mt-2 p-2 alert-danger'>{formik.errors.name}</div>
-                        ) : null}
-                    </div> */}
     
                     <div className="mb-3">
                         <label htmlFor="startDate" className="form-label almarai-light fw-bold">تاريخ البداية</label>
@@ -139,21 +141,7 @@ export default function Form() {
     
                     <div className="mb-3">
                         <label htmlFor="numberOfDays" className="form-label almarai-light fw-bold">عدد الأيام</label>
-                        <input 
-                            type="number" 
-                            className="form-control rounded-3" 
-                            id="numberOfDays" 
-                            min="1" 
-                            name='numberOfDays' 
-                            value={formik.values.numberOfDays} 
-                            onChange={formik.handleChange} 
-                            onBlur={formik.handleBlur}
-                            onKeyPress={(e) => {
-                                if (e.key === '0') {
-                                    e.preventDefault();
-                                }
-                            }}
-                        />
+                        <input type="number" className="form-control rounded-3" id="numberOfDays" min="1" name='numberOfDays' value={formik.values.numberOfDays} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
                         {formik.errors.numberOfDays && formik.touched.numberOfDays ? (
                             <div className='alert mt-2 p-2 alert-danger'>{formik.errors.numberOfDays}</div>
                         ) : null}
@@ -182,8 +170,7 @@ export default function Form() {
     
     
                     <div className="text-center almarai-light">
-                        {isLoading ? <LoadingButton/> : <Button disabled={!(formik.isValid && formik.dirty)} content={"إرسال الطلب"} />}  
-                                   
+                        {isLoading ? <LoadingButton/> : <Button disabled={!(formik.isValid && formik.dirty)} content={"إرسال الطلب"} />}   
                     </div>
                 </form>
             </div>

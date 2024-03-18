@@ -3,31 +3,41 @@ import FRAMA from '../assets/images/Frame.png';
 import STATUS1 from '../assets/images/status1.png';
 import '../assets/css/Order.css';
 import axios from 'axios';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useJwt } from 'react-jwt';
+import Cookies from 'js-cookie'
+
 
 
 export default function Order() {
-    const navigate = useNavigate();
-    const [orderData, setData] = useState(null);
-    const storedToken =localStorage.getItem("token");
-    console.log(storedToken);
-    const {decodedToken ,isExpired}  = useJwt(storedToken);
-    console.log(decodedToken);
+    let navigate = useNavigate();
+    let [orderData, setData] = useState(null);
+
+
+    //get token
+    let [Token ,setToken] = useState(null)
+    useEffect(() => {
+        const getTokenFromCookie = () => {
+          const tokenFromCookie = Cookies.get('myToken');
+          console.log(tokenFromCookie);
+          setToken(tokenFromCookie)
+        };
+        getTokenFromCookie();
+      }, [])
+
+
+
+    let {decodedToken ,isExpired}  = useJwt(Token);
 
 
 
     let username = decodedToken?.ID;
-    const apiUrl = `http://94.130.9.202:5050/vacation/get?username=${username}`;
-
-    // const handleClick = () => {
-    //     navigate('/details');
-    // }  
+    let apiUrl = `http://94.130.9.202:5050/vacation/get?username=${username}`;
 
     useEffect(() => {
-        const fetchData = async () => {
+        let fetchData = async () => {
             try {
-                const response = await axios.get(apiUrl);
+                let response = await axios.get(apiUrl);
                 let responseData =response.data.data
                 console.log("STRING " , responseData);
                 setData(responseData);
@@ -38,6 +48,7 @@ export default function Order() {
         };
         fetchData();
     }, [decodedToken]);
+
 console.log(orderData);
     
 return (<>
