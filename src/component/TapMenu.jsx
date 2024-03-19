@@ -1,13 +1,11 @@
 
-import React from 'react';
+import React, { useState ,useContext } from 'react';
 import { Tabs } from 'antd';
 import Order from './Order';
 import Form from './Form';
 import '../assets/css/TapMenu.css'
-const onChange = (key) => {
+import { TapProvider , TabContext } from './TapContext';
 
-  console.log(key);
-};
 
 const items = [
   {
@@ -25,5 +23,14 @@ const items = [
 
 ];
 
-const TapMenu = () => <Tabs defaultActiveKey="1" items={items} onChange={onChange}   />;
+const TapMenu = () =>{
+  const { currentTab, setCurrentTab } =  useContext(TabContext);
+  const onChange = (key) => {
+    setCurrentTab(key)
+    console.log(key);
+  };
+  
+return <Tabs defaultActiveKey= {"1"}  activeKey={currentTab} items={items} onChange={onChange}   />;
+     
+}
 export default TapMenu;

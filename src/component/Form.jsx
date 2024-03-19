@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 import {useNavigate} from 'react-router-dom'
 import { useJwt } from 'react-jwt'
@@ -9,10 +9,13 @@ import '../assets/css/Order.css'
 import * as Yup from 'yup'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { TabContext } from './TapContext'
 
 
 
 export default function Form() {
+    const { currentTab, setCurrentTab } = useContext(TabContext);
+
     let [isLoading , setLoading]= useState(false)
     let [error , setError]= useState(null)
     let navigate =useNavigate()
@@ -50,7 +53,7 @@ export default function Form() {
     let validationSchema = Yup.object().shape({
         startDate: Yup.string().required('تاريخ بداية الأجازة مطلوب'),
         endDate: Yup.string().required('تاريخ نهاية الأجازة مطلوب'),
-        numberOfDays: Yup.number().positive('عدد الأيام المطلوب يجب ان يكون أكثر من 0').required('عدد الأيام مطلوب').typeError('يجب أن يكون عددًا'),
+        noofdays: Yup.number().positive('عدد الأيام المطلوب يجب ان يكون أكثر من 0').required('عدد الأيام مطلوب').typeError('يجب أن يكون عددًا'),
         VacationType: Yup.string().required('نوع الأجازة مطلوب'),
         comments: Yup.string()
     });
@@ -61,7 +64,7 @@ export default function Form() {
             // name:"",
             startDate: "",
             endDate:  "",
-            numberOfDays:  "",
+            noofdays:  "",
             VacationType:  "",
             comments:  "",
         }, validationSchema:validationSchema,
@@ -70,6 +73,10 @@ export default function Form() {
     
     // call api
     async function submitForm(values){
+        if (values.VacationType === "اختر نوع الاجازه") {
+            return;
+        }
+
         setLoading(true)
         const body = {
             ...values , 
@@ -82,6 +89,7 @@ export default function Form() {
             let response = await axios.post(`http://94.130.9.202:5050/vacation/saveRequest` , body  );
             console.log(response);
             if (response.status === 200){
+                setCurrentTab("1")
                 setLoading(false);
             }
             // console.log(values);
@@ -100,7 +108,7 @@ export default function Form() {
             const endDate = new Date(formik.values.endDate); //inputDate
             const differenceInTime = endDate.getTime() - startDate.getTime();
             const differenceInDays = differenceInTime / (1000 * 3600 * 24);
-            formik.setFieldValue('numberOfDays', differenceInDays);
+            formik.setFieldValue('noofdays', differenceInDays);
         };
         calculateNumberOfDays(); 
     }, [formik.values.startDate, formik.values.endDate]); 
@@ -125,7 +133,7 @@ export default function Form() {
     
                     <div className="mb-3">
                         <label htmlFor="startDate" className="form-label almarai-light fw-bold">تاريخ البداية</label>
-                        <input type="date" className="form-control rounded-3 fw-b" id="startDate"  name='startDate' value={formik.values.startDate} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                        <input type="date" className="form-control rounded-3 fw-b" id="startDate"  name='startDate' value={formik.values.startDate} onChange={formik.handleChange} onBlur={formik.handleBlur} max={formik.values.endDate} />
                         {formik.errors.startDate && formik.touched.startDate ? (
                             <div className='alert mt-2 p-2 alert-danger'>{formik.errors.startDate}</div>
                         ) : null}
@@ -133,17 +141,17 @@ export default function Form() {
     
                     <div className="mb-3">
                         <label htmlFor="endDate" className="form-label almarai-light fw-bold">تاريخ النهاية</label>
-                        <input type="date" className="form-control rounded-3" id="endDate" name='endDate' value={formik.values.endDate} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                        <input type="date" className="form-control rounded-3" id="endDate" name='endDate' value={formik.values.endDate} onChange={formik.handleChange} onBlur={formik.handleBlur} min={formik.values.startDate}/>
                         {formik.errors.endDate && formik.touched.endDate ? (
                             <div className='alert mt-2 p-2 alert-danger'>{formik.errors.endDate}</div>
                         ) : null}    
                     </div>
     
                     <div className="mb-3">
-                        <label htmlFor="numberOfDays" className="form-label almarai-light fw-bold">عدد الأيام</label>
-                        <input type="number" className="form-control rounded-3" id="numberOfDays" min="1" name='numberOfDays' value={formik.values.numberOfDays} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
-                        {formik.errors.numberOfDays && formik.touched.numberOfDays ? (
-                            <div className='alert mt-2 p-2 alert-danger'>{formik.errors.numberOfDays}</div>
+                        <label htmlFor="noofdays" className="form-label almarai-light fw-bold">عدد الأيام</label>
+                        <input type="number" className="form-control rounded-3" id="noofdays" min="1" name='noofdays' value={formik.values.noofdays} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                        {formik.errors.noofdays && formik.touched.noofdays ? (
+                            <div className='alert mt-2 p-2 alert-danger'>{formik.errors.noofdays}</div>
                         ) : null}
                     </div>
     
@@ -151,6 +159,7 @@ export default function Form() {
                     <div className="mb-3">
                         <label htmlFor="VacationType" className="form-label almarai-light fw-bold">نوع الأجازة</label>
                         <select className="form-select rounded-3" id="VacationType" name='VacationType' value={formik.values.VacationType} onChange={formik.handleChange} onBlur={formik.handleBlur}>
+                            <option  className='almarai-light'>اختر نوع الاجازه</option>
                             <option value="إعتيادية" className='almarai-light'>إعتيادية</option>
                             <option value="طارئة" className='almarai-light'>طارئة </option>
                             <option value="مرضية" className='almarai-light'>مرضية</option>
@@ -162,12 +171,13 @@ export default function Form() {
     
                     <div className="mb-3">
                         <label htmlFor="comments" className="form-label almarai-light fw-bold">ملاحظات</label>
-                        <input type="text" className="form-control rounded-3" id="comments" name='comments' value={formik.values.comments} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                        {/* <input type="text" className="form-control rounded-3" id="comments" name='comments' value={formik.values.comments} onChange={formik.handleChange} onBlur={formik.handleBlur}/> */}
+                        <textarea class="form-control rounded-3" id="comments" name='comments' value={formik.values.comments} onChange={formik.handleChange} onBlur={formik.handleBlur} rows="3" ></textarea>
+
                         {formik.errors.comments && formik.touched.comments ? (
                             <div className='alert mt-2 p-2 alert-danger'>{formik.errors.comments}</div>
                         ) : null}    
                     </div>
-    
     
                     <div className="text-center almarai-light">
                         {isLoading ? <LoadingButton/> : <Button disabled={!(formik.isValid && formik.dirty)} content={"إرسال الطلب"} />}   

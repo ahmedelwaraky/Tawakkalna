@@ -6,12 +6,15 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'bootstrap/dist/css/bootstrap.rtl.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.js'
 import './index.css';
+import { TapProvider } from './component/TapContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <TapProvider>
+        <App />
+    </TapProvider>
   </React.StrictMode>
 );
 

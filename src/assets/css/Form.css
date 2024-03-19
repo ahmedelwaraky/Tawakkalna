@@ -11,3 +11,6 @@ body{
 form label {
     font-size: 14px !important;
 }
+form textarea {
+    resize: none;
+}

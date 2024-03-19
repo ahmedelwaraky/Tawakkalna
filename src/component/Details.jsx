@@ -64,15 +64,6 @@ export default function Details() {
     }, [decodedToken]);
 
     console.log(userdata);
-
-
-    // if (!isExpired) {
-    //     setIsExpired(isExpired)
-    //     alert("Token has expired");
-    //     navigate('/login')
-    //     return null; 
-    // }
-
     //spinner
     if(userdata == null || userdata.lenght === 0){
         return<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
@@ -115,7 +106,7 @@ export default function Details() {
                     
                     <div className="div d-flex justify-content-between border-bottom py-2">
                         <h6 className=''>رقم الطلب</h6>
-                        <h5 className='h6 '>{decodedToken.EmployeeTypeId}</h5>
+                        <h5 className='h6 '>{userdata?.id}</h5>
                     </div>
                     
                     <div className="div d-flex justify-content-between border-bottom py-2">

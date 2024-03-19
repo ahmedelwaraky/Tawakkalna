@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import FRAMA from '../assets/images/Frame.png';
 import STATUS1 from '../assets/images/status1.png';
 import '../assets/css/Order.css';
@@ -6,12 +6,15 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useJwt } from 'react-jwt';
 import Cookies from 'js-cookie'
+import { TabContext } from './TapContext'
 
 
 
 export default function Order() {
     let navigate = useNavigate();
     let [orderData, setData] = useState(null);
+    const { currentTab, setCurrentTab } = useContext(TabContext);
+
 
 
     //get token
@@ -47,7 +50,7 @@ export default function Order() {
             }
         };
         fetchData();
-    }, [decodedToken]);
+    }, [decodedToken  ,currentTab]);
 
 console.log(orderData);
     
@@ -62,7 +65,7 @@ return (<>
                                 <img src={FRAMA} alt="" />
                         </div>
                         <div className="text">
-                            <h2 className='h6 almarai-regular fw-bold'>طلب رقم {decodedToken.EmployeeTypeId}</h2>
+                            <h2 className='h6 almarai-regular fw-bold'>طلب رقم {item?.id}</h2>
                             <p className='almarai-regular'>{item?.requestDate.slice('T' , 10)}<small></small></p>
                         </div>
                     </div>

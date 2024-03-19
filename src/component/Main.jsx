@@ -64,12 +64,11 @@ export default function Main() {
         <div className="container">
             <div className="main-serves text-center m-5">
                 <i className="logo fa-solid fa-plane-departure"></i>
-                <h2 className='mt-3'>خدمة طلب إجـازة</h2>
+                <h2 className='mt-3'>خدمة طلب أجـازة</h2>
             </div>
             <div className="serves-info">
-                <h3>أهلا بك في خدمة طلب إجازة !</h3>
-                <p>مكان واحد يجمع الخدمات الخاصة بإنجازات موظفي ومنسوبي وزارة الداخلية<br></br> , من هناك يمكنك تقديم طلب إجازة جديد وتقديم طلب إالغاء إجازة ومتابعة الإجازات <br></br>الساببقة ويمكنك مشاركة إجازاتك معغ الاخرين مكان واحد </p>
-                <h6 className='h6'>{tokenFromURL}</h6>
+                <h3>أهلا بك في خدمة طلب أجازة !</h3>
+                <p> مكان واحد يجمع الخدمات الخاصة بأجـازات موظفي ومنسوبي وزارة الداخلية. من هنا يمكنك تقديم طلب أجازة جديد وتقديم طلب إالغاء أجازة ومتابعة الأجازات السابقة ويمكنك مشاركة إجازاتك مع الاحرين من مكان واحد.</p>
             </div>
         </div>
         <div className="text-center almarai-light px-5 mt-5">
