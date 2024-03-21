@@ -86,7 +86,7 @@ export default function Form() {
             "SubagencyName":decodedToken.SubAgencyName  
         }
         try {
-            let response = await axios.post(`http://94.130.9.202:5050/vacation/saveRequest` , body  );
+            let response = await axios.post(`https://mob.coursaty.net/vacation/saveRequest` , body  );
             console.log(response);
             if (response.status === 200){
                 setCurrentTab("1")

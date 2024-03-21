@@ -43,7 +43,7 @@ export default function Details() {
 
     //url
     let username = decodedToken?.ID;;
-    const apiUrl = `http://94.130.9.202:5050/vacation/get?username=${username}`;
+    const apiUrl = `https://mob.coursaty.net/vacation/get?username=${username}`;
 
     // fetch data
     useEffect(() => {

@@ -35,7 +35,7 @@ export default function Order() {
 
 
     let username = decodedToken?.ID;
-    let apiUrl = `http://94.130.9.202:5050/vacation/get?username=${username}`;
+    let apiUrl = `https://mob.coursaty.net/vacation/get?username=${username}`;
 
     useEffect(() => {
         let fetchData = async () => {

@@ -11,21 +11,21 @@ export default function Main() {
     // let location = useLocation();
 
     //  Token
-     let tokenFromURL = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxMDE1MTA4NzU0IiwidW5pcXVlX25hbWUiOiLYrtin2YTYryAzMzQ0NyDYudio2K_Yp9mE2YTZhyAzMzQ0NyDZhdit2YXYryAzMzQ0NyDYp9mE2YXYrdmF2K_ZiiAzMzQ0NyIsImZhbWlseV9uYW1lIjoi2KfZhNmF2K3Zhdiv2YogMzM0NDciLCJJRCI6IjEwMTUxMDg3NTQiLCJSYW5rTmFtZSI6ItmF2YLYr9mFIiwiU3ViQWdlbmN5SWQiOiI4NDcyZGEwNC1jNDc0LTQxNTItYTE2ZS1kM2M0MDRmYTIxMjIiLCJTdWJBZ2VuY3lOYW1lIjoiMdiv2YrZiNin2YYg2YjYstin2LHYqSDYp9mE2K_Yp9iu2YTZitipIiwiVXNlclR5cGUiOiJFbXBsb3llZSIsIklQQWRkcmVzcyI6IjQ2LjE1Mi40MS42NiIsIlVzZXJUeXBlSWQiOiIwIiwiRW1wbG95ZWVUeXBlIjoiTWFydGlhbCIsIkVtcGxveWVlVHlwZUlkIjoiMSIsIm5iZiI6MTcxMDI3MTE5MiwiZXhwIjoxNzEyODYzMTkyLCJpYXQiOjE3MTAyNzExOTJ9.RmRRhUl8K3F-8TlF_iXJ9KZuoLxVfs0pVv1Npb5_aByPKG3jVSfQATF11S33kSniwzLIppuHnXhZ5tAGwcH3tPg3pO_rD5JxFL2oqrJl7HZVB74vAoap348j5IAfxNPTc9bGAQ8LxrLh3EEZsABvFBf5FSlIRctQJZkRJmJYwUmorYbP9_mYWbBa1dVYWTerchBiUsiCwgrY2y0q9TEbsJw0RbkNc9zJbkAe3t9yIcbwgzFbTNL-9AOa56L_YSAUzu9jq8JeRueWtep7TAzsXUmcPoQJBAF1Q6c_WH9hPaQ76T9yG34iwL4Em7qZwRqVEWN9JOTrRU7xEM1hl59m1w";
+    //  let tokenFromURL = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxMDE1MTA4NzU0IiwidW5pcXVlX25hbWUiOiLYrtin2YTYryAzMzQ0NyDYudio2K_Yp9mE2YTZhyAzMzQ0NyDZhdit2YXYryAzMzQ0NyDYp9mE2YXYrdmF2K_ZiiAzMzQ0NyIsImZhbWlseV9uYW1lIjoi2KfZhNmF2K3Zhdiv2YogMzM0NDciLCJJRCI6IjEwMTUxMDg3NTQiLCJSYW5rTmFtZSI6ItmF2YLYr9mFIiwiU3ViQWdlbmN5SWQiOiI4NDcyZGEwNC1jNDc0LTQxNTItYTE2ZS1kM2M0MDRmYTIxMjIiLCJTdWJBZ2VuY3lOYW1lIjoiMdiv2YrZiNin2YYg2YjYstin2LHYqSDYp9mE2K_Yp9iu2YTZitipIiwiVXNlclR5cGUiOiJFbXBsb3llZSIsIklQQWRkcmVzcyI6IjQ2LjE1Mi40MS42NiIsIlVzZXJUeXBlSWQiOiIwIiwiRW1wbG95ZWVUeXBlIjoiTWFydGlhbCIsIkVtcGxveWVlVHlwZUlkIjoiMSIsIm5iZiI6MTcxMDI3MTE5MiwiZXhwIjoxNzEyODYzMTkyLCJpYXQiOjE3MTAyNzExOTJ9.RmRRhUl8K3F-8TlF_iXJ9KZuoLxVfs0pVv1Npb5_aByPKG3jVSfQATF11S33kSniwzLIppuHnXhZ5tAGwcH3tPg3pO_rD5JxFL2oqrJl7HZVB74vAoap348j5IAfxNPTc9bGAQ8LxrLh3EEZsABvFBf5FSlIRctQJZkRJmJYwUmorYbP9_mYWbBa1dVYWTerchBiUsiCwgrY2y0q9TEbsJw0RbkNc9zJbkAe3t9yIcbwgzFbTNL-9AOa56L_YSAUzu9jq8JeRueWtep7TAzsXUmcPoQJBAF1Q6c_WH9hPaQ76T9yG34iwL4Em7qZwRqVEWN9JOTrRU7xEM1hl59m1w";
        
    
-    // let[tokenFromURL , setTokenUrl]=useState(null)
-    // useEffect(()=>{
-    //     const extractTokenFromURL = () => {
-    //         // Get URL parameters
-    //         const queryParams = new URLSearchParams(window.location.search);
-    //         // Retrieve token from parameters
-    //         const tokenFromURL = queryParams.get('token');
-    //         // Update state with the token
-    //         setTokenUrl(tokenFromURL || '');
-    //       };
-    //       extractTokenFromURL();
-    // },[])
+    let[tokenFromURL , setTokenUrl]=useState(null)
+    useEffect(()=>{
+        const extractTokenFromURL = () => {
+            // Get URL parameters
+            const queryParams = new URLSearchParams(window.location.search);
+            // Retrieve token from parameters
+            const tokenFromURL = queryParams.get('token');
+            // Update state with the token
+            setTokenUrl(tokenFromURL || '');
+          };
+          extractTokenFromURL();
+    },[])
 
     //set at Cooki
     useEffect(()=>{
@@ -68,7 +68,7 @@ export default function Main() {
             </div>
             <div className="serves-info">
                 <h3>أهلا بك في خدمة طلب أجازة !</h3>
-                <p> مكان واحد يجمع الخدمات الخاصة بأجـازات موظفي ومنسوبي وزارة الداخلية. من هنا يمكنك تقديم طلب أجازة جديد وتقديم طلب إلغاء أجازة ومتابعة الأجازات السابقة ويمكنك مشاركة إجازاتك مع الاخرين من مكان واحد.</p>
+                <p> مكان واحد يجمع الخدمات الخاصة بأجـازات موظفي ومنسوبي وزارة الداخلية. من هنا يمكنك تقديم طلب أجازة جديد وتقديم طلب إلغاء أجازة ومتابعة الأجازات السابقة ويمكنك مشاركة أجازاتك مع الآخرين من مكان واحد.</p>
             </div>
         </div>
         <div className="text-center almarai-light px-5 mt-5">
