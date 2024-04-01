@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import FRAMA from '../assets/images/Frame.png';
-import STATUS1 from '../assets/images/status1.png';
+import open from '../assets/images/open.png';
+ import wait from '../assets/images/wait.png';
+import close from '../assets/images/close.png';
 import '../assets/css/Order.css';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
@@ -28,11 +30,8 @@ export default function Order() {
         getTokenFromCookie();
       }, [])
 
-
-
+    //decode token
     let {decodedToken ,isExpired}  = useJwt(Token);
-
-
 
     let username = decodedToken?.ID;
     let apiUrl = `https://mob.coursaty.net/vacation/get?username=${username}`;
@@ -71,9 +70,16 @@ return (<>
                     </div>
 
                     <div className="order-status pe-5">
-                        <img src={STATUS1} alt="status" />
+                        {item.status === "مرفوض" ? (
+                            <img src={close} alt="status" />
+                        ) : item.status === "مفتوح" ? (
+                            <img src={open} alt="status" />
+                        ) : (
+                            <img src={wait} alt="status" />
+                        )}
                         <p className='almarai-regular'><small>{item?.status}</small></p>
                     </div>
+
                     </Link>
                 </div>
             )}

@@ -84,7 +84,7 @@ export default function Details() {
     return (<>
         <section className='userDetails' >
             <div className="container ">
-                <div className="accecpting text-center text-white  mt-4">
+                <div className={`accecpting text-center text-white mt-4 ${userdata?.status === "مرفوض" ? "bg-red" : userdata?.status === "مفتوح" ? "bg-green" : "bg-gray"}`}>
                     <h6 className=''>{userdata?.status}</h6>
                 </div>
 

@@ -17,12 +17,14 @@
 }
 .order-status img{
     position: relative;
+    width: 45px;
 }
 .order-status p{
     position: absolute;
     top: 0;
-    padding: 5px 5px 0 0;
+    padding: 7px 8px;
     color: aliceblue;
     font-size: 12px;
-    text-align: center;
+    margin: auto;
+    /* text-align: center; */
 }
