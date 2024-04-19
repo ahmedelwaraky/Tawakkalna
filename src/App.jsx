@@ -13,6 +13,12 @@ import Status from './component/Status';
 import LoadingButton from './component/LoadingButton';
 import Details from './component/Details';
 import Error from './component/Error';
+import PrivacyPolicy from './component/PrivacyPolicy';
+import CommonQuestions from './component/CommonQuestions';
+import ContactUs from './component/ContactUs';
+import Toggle from './component/Toggle';
+import FollowToggle from './component/FollowToggle';
+
 
 export default function App() {
   return (
@@ -28,6 +34,11 @@ export default function App() {
         <Route path="/loadingbutton"  element={<LoadingButton/>}/> 
         <Route path="/details/:id"  element={<Details/>}/> 
         <Route path="/error"  element={<Error/>}/> 
+        <Route path="/privacy"  element={<PrivacyPolicy/>}/> 
+        <Route path="/questions"  element={<CommonQuestions/>}/> 
+        <Route path="/contact"  element={<ContactUs/>}/> 
+        <Route path="/toggle"  element={<Toggle/>}/> 
+        <Route path="/follow"  element={<FollowToggle/>}/> 
       </Routes>
     </BrowserRouter>
   )

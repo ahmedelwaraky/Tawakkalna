@@ -17,14 +17,42 @@
 }
 .order-status img{
     position: relative;
-    width: 45px;
 }
 .order-status p{
     position: absolute;
     top: 0;
-    padding: 7px 8px;
+    padding: 7px 20px;
     color: aliceblue;
     font-size: 12px;
     margin: auto;
-    /* text-align: center; */
 }
+/* Toggle */
+.toggle{
+    background-color: #ffffff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    border-radius: 15px 15px 0 0;
+}
+.line{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 4px;
+    background-color: #787c62d9;
+    border-radius: 20px;
+    margin: 0 auto;
+} 
+.collapse h2 , i{
+    color:rgba(0, 0, 0, 0.7)
+}
+/* .toggle-sec {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999; 
+} */
+
+

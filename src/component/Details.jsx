@@ -6,10 +6,20 @@ import { useJwt } from 'react-jwt';
 import { RotatingLines } from 'react-loader-spinner'
 import {useNavigate, useParams } from 'react-router-dom';
 import Cookies from 'js-cookie'
+import FollowToggle from './FollowToggle';
 
 
 
 export default function Details() {
+    let [showComponent, setShowComponent] = useState(false);
+
+    const handleClick = () => {
+        setShowComponent(true);
+    };
+
+
+
+
     let [userdata, setUserData] = useState(null);
     let navigate =useNavigate() 
 
@@ -83,8 +93,8 @@ export default function Details() {
 
     return (<>
         <section className='userDetails' >
-            <div className="container ">
-                <div className={`accecpting text-center text-white mt-4 ${userdata?.status === "مرفوض" ? "bg-red" : userdata?.status === "مفتوح" ? "bg-green" : "bg-gray"}`}>
+            <div className="container pt-4 ">
+                <div className={`accecpting text-center text-white  ${userdata?.status === "مرفوض" ? "bg-red" : userdata?.status === "مفتوح" ? "bg-green" : "bg-gray"}`}>
                     <h6 className=''>{userdata?.status}</h6>
                 </div>
 
@@ -110,7 +120,7 @@ export default function Details() {
                     </div>
                     
                     <div className="div d-flex justify-content-between border-bottom py-2">
-                        <h6 className=''>تاريخ الطلب </h6>
+                        <h6 className=''>تاريخ الطلب </h6> 
                         <h5 className='h6 '>{userdata?.requestDate.split("T")[0]}</h5>
                     </div>
             
@@ -138,9 +148,34 @@ export default function Details() {
                         <h6 className=''>ملاحظات</h6>
                         <h5 className='h6 '></h5>
                     </div>
-                    
+
+                    <div className="d-flex justify-content-around my-2">
+
+                        {userdata?.status === "مفتوح" && (
+                            <>
+                                <buuton className="btn border border-1 rounded px-4">
+                                    طباعةالقرار <i class="fa-solid fa-print"></i>
+                                </buuton>
+                                
+                                <buuton className="btn border border-1 rounded px-4">
+                                    عرض القرار <i class="fa-regular fa-eye"></i>
+                                </buuton>
+                            </>
+                        )}
+
+                        {(userdata?.status === "منتهي") && (
+                            <>
+                                <buuton className="btn border border-1 rounded px-4" onClick={handleClick} >
+                                    متابعة الطلب <i class="fa-solid fa-list-check"></i>
+                                </buuton>
+                            </>
+                        )}
+                    </div>   
                 </div>
-            </div>   
+            </div> 
+            <div className="follow">
+                {showComponent && <FollowToggle />}
+            </div>
         </section>
       </>
     )

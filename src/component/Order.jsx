@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useJwt } from 'react-jwt';
 import Cookies from 'js-cookie'
 import { TabContext } from './TapContext'
+import Toggle from './Toggle';
 
 
 
@@ -16,7 +17,6 @@ export default function Order() {
     let navigate = useNavigate();
     let [orderData, setData] = useState(null);
     const { currentTab, setCurrentTab } = useContext(TabContext);
-
 
 
     //get token
@@ -55,7 +55,7 @@ console.log(orderData);
     
 return (<>
     <section id="order" className=''>
-        <div className="container mx-auto my-3 ">
+        <div className="container mx-auto py-3 ">
             {orderData && orderData.map((item)=>
                  <div key={item?.id} className="main-section bg-white border border-1 rounded-4 col-12 my-2" >
                     <Link className="main-order" to={`/details/${item?.id}`}>
@@ -83,6 +83,9 @@ return (<>
                     </Link>
                 </div>
             )}
+        </div>
+        <div className="toggle-sec">
+            <Toggle/>
         </div>
     </section>
 </>)

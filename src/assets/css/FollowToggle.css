@@ -1,0 +1,43 @@
+/* Right */
+.followToggle .right i {
+    color:#46b87e;
+    font-size: 25px!important;
+    padding-left: 10px;
+}
+.dash{
+    margin-left: 22px;
+    border-left: 2px dashed #46b87e; 
+    height: 45px; 
+}
+.solid{
+    margin-left: 22px;
+    border-left: 2px solid #46b87e; 
+    height: 65px; 
+}
+
+/* Left */
+.followToggle .left{
+    width: 100%;
+    margin: auto;
+    border: 1px solid #46b87e;
+    background-color: #EEf6f3;
+}
+.followToggle .left .img i{
+    color:#46b87e;
+    font-size: 25px!important;
+    padding-left: 15px;
+}
+.followToggle .left .info h3,
+.followToggle .left .info h4,
+.followToggle .left .info h5{
+    color: rgba(0, 0, 0, 0.7);
+}
+.followToggle .left .info h3{
+    font-size: 16px;
+}
+.followToggle .left .info h4{
+    font-size: 14px;
+}
+.followToggle .left .info h5{
+    font-size: 12px;
+}

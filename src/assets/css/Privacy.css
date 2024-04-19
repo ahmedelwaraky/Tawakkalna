@@ -1,0 +1,21 @@
+.Common-Questions .head h1
+,.Privacy-Policy .head h1{
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.793);
+    font-family: "Almarai", sans-serif;
+}
+.Privacy-Policy .content h2,
+.Common-Questions .content h2{
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.793);
+    font-family: "Almarai", sans-serif;
+}
+.Privacy-Policy .content p,
+.Common-Questions .content p{
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.548);
+    font-family: "Almarai", sans-serif;
+}
