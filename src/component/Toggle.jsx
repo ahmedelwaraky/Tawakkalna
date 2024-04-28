@@ -17,7 +17,7 @@ export default function Toggle() {
 
   return (<>
  <section className='toggle'>
-    <h6 class="gap-1  py-2">
+    <h6 class="gap-1  py-3">
         <div className='line' data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></div>
     </h6>
     <div class="collapse" id="collapseExample">

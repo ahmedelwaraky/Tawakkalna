@@ -18,30 +18,20 @@ export default function Details() {
     };
 
 
-
-
     let [userdata, setUserData] = useState(null);
     let navigate =useNavigate() 
 
 
-    let [Token ,setToken] = useState(null)
     //get token
-    // const storedToken = localStorage.getItem("token");
+    let [Token ,setToken] = useState(null)
     useEffect(() => {
-        // Function to retrieve and decode token from cookie
         const getTokenFromCookieAndDecode = () => {
-          // Retrieve token from cookie
           const tokenFromCookie = Cookies.get('myToken');
           console.log(tokenFromCookie);
           setToken(tokenFromCookie)
         };
-        // Call the function to retrieve and decode token when the component mounts
         getTokenFromCookieAndDecode();
       }, [])
-
-
-
-
 
     //decode token
     const { decodedToken, isExpired } = useJwt(Token);
@@ -61,9 +51,7 @@ export default function Details() {
             try {
                 const response = await axios.get(apiUrl );
                 const usersData = response.data.data
-                const oneUser = usersData && usersData.find(us=>
-                    us.id == orderId 
-                )
+                const oneUser = usersData && usersData.find(us=>us.id == orderId )
                 console.log(oneUser);
                 setUserData(oneUser)
             } catch (error) {
@@ -94,7 +82,7 @@ export default function Details() {
     return (<>
         <section className='userDetails' >
             <div className="container pt-4 ">
-                <div className={`accecpting text-center text-white  ${userdata?.status === "مرفوض" ? "bg-red" : userdata?.status === "مفتوح" ? "bg-green" : "bg-gray"}`}>
+                <div className={`accecpting text-center text-white  ${userdata?.status === "مرفوض" ? "bg-red" : userdata?.status === "مقبول" ? "bg-green" : "bg-gray"}`}>
                     <h6 className=''>{userdata?.status}</h6>
                 </div>
 
@@ -151,7 +139,7 @@ export default function Details() {
 
                     <div className="d-flex justify-content-around my-2">
 
-                        {userdata?.status === "مفتوح" && (
+                        {userdata?.status === "مقبول" && (
                             <>
                                 <buuton className="btn border border-1 rounded px-4">
                                     طباعةالقرار <i class="fa-solid fa-print"></i>
@@ -163,7 +151,7 @@ export default function Details() {
                             </>
                         )}
 
-                        {(userdata?.status === "منتهي") && (
+                        {(userdata?.status === "تحت الاجراء") && (
                             <>
                                 <buuton className="btn border border-1 rounded px-4" onClick={handleClick} >
                                     متابعة الطلب <i class="fa-solid fa-list-check"></i>
@@ -174,7 +162,7 @@ export default function Details() {
                 </div>
             </div> 
             <div className="follow">
-                {showComponent && <FollowToggle />}
+                {showComponent && <FollowToggle steps={userdata.stepCompleted} />}
             </div>
         </section>
       </>

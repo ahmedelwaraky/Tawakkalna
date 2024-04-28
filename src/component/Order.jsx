@@ -72,7 +72,7 @@ return (<>
                     <div className="order-status pe-5">
                         {item.status === "مرفوض" ? (
                             <img src={close} alt="status" />
-                        ) : item.status === "مفتوح" ? (
+                        ) : item.status === "مقبول" ? (
                             <img src={open} alt="status" />
                         ) : (
                             <img src={wait} alt="status" />

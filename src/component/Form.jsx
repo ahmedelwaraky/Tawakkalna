@@ -10,6 +10,7 @@ import * as Yup from 'yup'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import { TabContext } from './TapContext'
+import Toggle from './Toggle'
 
 
 
@@ -229,6 +230,7 @@ export default function Form() {
                     <div className="text-center almarai-light">
                         {isLoading ? <LoadingButton/> : <Button disabled={!(formik.isValid && formik.dirty)} content={"إرسال الطلب"} onClick={areSure} />}   
                     </div>
+
                 </form>
     </div>
   </section>
