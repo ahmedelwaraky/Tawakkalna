@@ -207,10 +207,10 @@ export default function Form() {
                     <div className="mb-3">
                         <label htmlFor="VacationType" className="form-label almarai-light fw-bold">نوع الأجازة</label>
                         <select className="form-select rounded-3" id="VacationType" name='VacationType' value={formik.values.VacationType} onChange={formik.handleChange} onBlur={formik.handleBlur}>
-                            <option  className='almarai-light'>اختر نوع الاجازه</option>
-                            <option value="إعتيادية" className='almarai-light'>سنوية</option>
-                            <option value="طارئة" className='almarai-light'>مرضية </option>
-                            <option value="مرضية" className='almarai-light'>اَخري</option>
+                            <option  className='almarai-light bg-Vacation'>اختر نوع الاجازه</option>
+                            <option value="سنوية" className='almarai-light bg-Vacation with-border'>سنوية</option>
+                            <option value="مرضية" className='almarai-light bg-Vacation'>مرضية </option>
+                            <option value="اَخري" className='almarai-light bg-Vacation'>اَخري</option>
                         </select>
                         {formik.errors.VacationType && formik.touched.VacationType ? (
                             <div className='alert mt-2 p-2 alert-danger'>{formik.errors.VacationType}</div>

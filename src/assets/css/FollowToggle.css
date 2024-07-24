@@ -7,6 +7,11 @@
 .dash{
     margin-left: 22px;
     border-left: 2px dashed #46b87e; 
+    height: 65px; 
+}
+.dash0{
+    margin-left: 22px;
+    border-left: 2px dashed #46b87e; 
     height: 45px; 
 }
 .solid{
@@ -14,14 +19,22 @@
     border-left: 2px solid #46b87e; 
     height: 65px; 
 }
+.solid0{
+    margin-left: 22px;
+    border-left: 2px solid #46b87e; 
+    height: 45px; 
+}
 
 /* Left */
 .followToggle .left{
     width: 100%;
     margin: auto;
     border: 1px solid #46b87e;
+}
+.bg-step{
     background-color: #EEf6f3;
 }
+
 .followToggle .left .img i{
     color:#46b87e;
     font-size: 25px!important;

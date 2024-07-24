@@ -14,6 +14,13 @@ form label {
 form textarea {
     resize: none;
 }
+.bg-Vacation{
+    background-color: #c2a53b36 !important;
+}
+.with-border {
+    border-bottom: 1px solid black !important; /* Adjust thickness and color as needed */
+}
+
 /* alert  */
 .mother{
     background-color: #c2a53b67;
